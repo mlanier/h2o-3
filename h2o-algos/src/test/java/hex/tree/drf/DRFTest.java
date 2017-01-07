@@ -280,14 +280,11 @@ public class DRFTest extends TestUtil {
   }
 
   @Test public void test30k() throws Throwable {
-    basicDRFTestOOBE_Classification(
+    basicDRFTestOOBE_Regression(
             "./smalldata/gbm_test/30k_cattest.csv", "cat30k",
             new PrepData() {
               @Override
               int prep(Frame fr) {
-                Vec resp = fr.remove("C3");
-                fr.add("C3", VecUtils.toCategoricalVec(resp));
-                resp.remove();
                 return fr.find("C3");
               }
             },
@@ -295,8 +292,7 @@ public class DRFTest extends TestUtil {
             20, //bins
             10, //min_rows
             5, //max_depth
-            null,
-            s("0", "1"));
+            0.2503732832321644);
   }
 
   @Test public void testProstate() throws Throwable {
@@ -460,13 +456,14 @@ public class DRFTest extends TestUtil {
       drf._ntrees = ntree;
       drf._max_depth = max_depth;
       drf._min_rows = min_rows;
-      drf._stopping_rounds = 0; //no early stopping
+//      drf._stopping_rounds = 0; //no early stopping
 //      drf._binomial_double_trees = new Random().nextBoolean();
       drf._nbins = nbins;
       drf._nbins_cats = nbins;
       drf._mtries = -1;
-      drf._sample_rate = 0.66667f;   // Simulated sampling with replacement
-      drf._seed = (1L<<32)|2;
+//      drf._sample_rate = 0.66667f;   // Simulated sampling with replacement
+      //drf._seed = (1L<<32)|2;
+      drf._seed = 1234;
 
       // Invoke DRF and block till the end
       DRF job = new DRF(drf);
