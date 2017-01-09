@@ -11,7 +11,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import water.*;
-import water.api.StreamingSchema;
 import water.exceptions.H2OModelBuilderIllegalArgumentException;
 import water.fvec.Frame;
 import water.fvec.RebalanceDataSet;
@@ -22,7 +21,6 @@ import water.util.Triple;
 import water.util.VecUtils;
 
 import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.util.*;
 
@@ -456,14 +454,13 @@ public class DRFTest extends TestUtil {
       drf._ntrees = ntree;
       drf._max_depth = max_depth;
       drf._min_rows = min_rows;
-//      drf._stopping_rounds = 0; //no early stopping
+      drf._stopping_rounds = 0; //no early stopping
 //      drf._binomial_double_trees = new Random().nextBoolean();
       drf._nbins = nbins;
       drf._nbins_cats = nbins;
       drf._mtries = -1;
-//      drf._sample_rate = 0.66667f;   // Simulated sampling with replacement
-      //drf._seed = (1L<<32)|2;
-      drf._seed = 1234;
+      drf._sample_rate = 0.66667f;   // Simulated sampling with replacement
+      drf._seed = (1L<<32)|2;
 
       // Invoke DRF and block till the end
       DRF job = new DRF(drf);
