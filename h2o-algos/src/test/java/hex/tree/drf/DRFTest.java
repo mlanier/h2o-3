@@ -279,7 +279,7 @@ public class DRFTest extends TestUtil {
             s("0", "1"));
   }
 
-  @Test public void test30k() throws Throwable {
+  @Test public void test30kUnseenLevels() throws Throwable {
     basicDRFTestOOBE_Regression(
             "./smalldata/gbm_test/30k_cattest.csv", "cat30k",
             new PrepData() {
