@@ -290,7 +290,7 @@ public class DRFTest extends TestUtil {
             20, //bins
             10, //min_rows
             5, //max_depth
-            0.2504063358648721);
+            0.25040633586487215);
   }
 
   @Test public void testProstate() throws Throwable {
