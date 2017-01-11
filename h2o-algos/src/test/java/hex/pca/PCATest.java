@@ -118,6 +118,7 @@ categorical columns.
       train.vec(0).setNA(0);
       train.vec(3).setNA(10);
       train.vec(5).setNA(100);
+      DKV.put(train);
       PCAModel.PCAParameters parms = new PCAModel.PCAParameters();
       parms._train = train._key;
       parms._k = 7;
@@ -217,6 +218,7 @@ categorical columns.
       train.remove(12).remove();    // remove categorical columns
       train.remove(11).remove();
       train.remove(10).remove();
+      DKV.put(train);
       PCAModel.PCAParameters parms = new PCAModel.PCAParameters();
       parms._train = train._key;
       parms._k = 3;
@@ -274,7 +276,7 @@ have numerical columns and no categorical columns.
       train.vec(0).setNA(0);
       train.vec(3).setNA(10);
       train.vec(5).setNA(20);
-
+      DKV.put(train);
       PCAModel.PCAParameters parms = new PCAModel.PCAParameters();
       parms._train = train._key;
       parms._k = 3;
@@ -376,6 +378,7 @@ categorical columns.
       train.vec(0).setNA(0);
       train.vec(3).setNA(10);
       train.vec(5).setNA(20);
+      DKV.put(train);
 
       PCAModel.PCAParameters parms = new PCAModel.PCAParameters();
       parms._train = train._key;
