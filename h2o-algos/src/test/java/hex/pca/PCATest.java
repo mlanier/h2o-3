@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 
 public class PCATest extends TestUtil {
   public static final double TOLERANCE = 1e-6;
-  @BeforeClass public static void setup() { stall_till_cloudsize(1); }
+  @BeforeClass public static void setup() { stall_till_cloudsize(2); }
 
   @Test public void testArrests() throws InterruptedException, ExecutionException {
     // Results with de-meaned training frame
@@ -114,7 +114,7 @@ categorical columns.
     PCAModel modelW = null;     // store PCA models generated with wideDataSet set to true
     Frame train = null, scoreN = null, scoreW = null;
     try {
-      train = parse_test_file(Key.make("prostate_cat.hex"), "smalldata/prostate/prostate_cat.csv");
+      train = parse_test_file(Key.make("prostate_catNA.hex"), "smalldata/prostate/prostate_cat.csv");
       train.vec(0).setNA(0);
       train.vec(3).setNA(10);
       train.vec(5).setNA(100);
@@ -213,7 +213,7 @@ categorical columns.
     PCAModel modelW = null;     // store PCA models generated with wideDataSet set to true
     Frame train = null, scoreN = null, scoreW = null;
     try {
-      train = parse_test_file(Key.make("prostate_cat.hex"), "smalldata/pca_test/decathlon.csv");
+      train = parse_test_file(Key.make("decathlonN.hex"), "smalldata/pca_test/decathlon.csv");
       train.remove(12).remove();    // remove categorical columns
       train.remove(11).remove();
       train.remove(10).remove();
@@ -265,7 +265,7 @@ have numerical columns and no categorical columns.
     PCAModel modelW = null;     // store PCA models generated with wideDataSet set to true
     Frame train = null, scoreN = null, scoreW = null;
     try {
-      train = parse_test_file(Key.make("prostate_cat.hex"), "smalldata/pca_test/decathlon.csv");
+      train = parse_test_file(Key.make("decathlonNNA.hex"), "smalldata/pca_test/decathlon.csv");
       train.remove(12).remove();    // remove categorical columns
       train.remove(11).remove();
       train.remove(10).remove();
@@ -322,7 +322,7 @@ have numerical columns and no categorical columns.
     PCAModel modelW = null;     // store PCA models generated with wideDataSet set to true
     Frame train = null, scoreN = null, scoreW = null;
     try {
-      train = parse_test_file(Key.make("prostate_cat.hex"), "smalldata/pca_test/decathlon.csv");
+      train = parse_test_file(Key.make("decathlon.hex"), "smalldata/pca_test/decathlon.csv");
       PCAModel.PCAParameters parms = new PCAModel.PCAParameters();
       parms._train = train._key;
       parms._k = 3;
@@ -370,7 +370,7 @@ categorical columns.
     PCAModel modelW = null;     // store PCA models generated with wideDataSet set to true
     Frame train = null, scoreN = null, scoreW = null;
     try {
-      train = parse_test_file(Key.make("prostate_cat.hex"), "smalldata/pca_test/decathlon.csv");
+      train = parse_test_file(Key.make("decalthonNA.hex"), "smalldata/pca_test/decathlon.csv");
 
       // set NAs
       train.vec(0).setNA(0);
