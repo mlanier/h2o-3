@@ -18,7 +18,8 @@ import h2o
 # to make sure that we are getting the correct responses.
 #
 # For exhaustive tests using all possible combination of input arguments, making sure all
-# responses of the API commands are correct should be done elsewhere.
+# responses of the API commands are correct, or if in error, the correct error messages
+# are sent should be done elsewhere.
 
 def h2oinit():
     """
@@ -63,7 +64,6 @@ def h2oinit():
             "h2o.init(ip=ipS, port=portS, nthreads=nthread, max_mem_size=max_mem_size, min_mem_size=min_mem_size," \
             "start_h2o=start_h2o, strict_version_check=strict_version_check) command not working"
 
-    sys.stdout.flush()
 if __name__ == "__main__":
     pyunit_utils.standalone_test(h2oinit)
 else:
