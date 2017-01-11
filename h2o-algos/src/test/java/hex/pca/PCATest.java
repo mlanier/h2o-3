@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 
 public class PCATest extends TestUtil {
   public static final double TOLERANCE = 1e-6;
-  @BeforeClass public static void setup() { stall_till_cloudsize(2); }
+  @BeforeClass public static void setup() { stall_till_cloudsize(1); }
 
   @Test public void testArrests() throws InterruptedException, ExecutionException {
     // Results with de-meaned training frame
