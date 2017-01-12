@@ -40,10 +40,10 @@ def h2oget_model():
         model.train(x=X, y=Y, training_frame=training_data)
         model2 = h2o.get_model(model.model_id)
         assert (model._model_json['output']['model_category']==model2._model_json['output']['model_category']) and \
-               (model2._model_json['output']['model_category']=='Binomial'), "h2o.get_model() command not working"
+               (model2._model_json['output']['model_category']=='Binomial'), "h2o.get_model() command is not working"
 
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.get_model() command not working"
+    except Exception as e:
+        assert False, "h2o.get_model() command is not working"
 
 
 if __name__ == "__main__":

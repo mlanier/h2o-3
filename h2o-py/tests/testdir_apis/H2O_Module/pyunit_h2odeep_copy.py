@@ -35,11 +35,11 @@ def h2odeep_copy():
         new_name = "new_frame"
         training_data = h2o.import_file(pyunit_utils.locate("smalldata/logreg/benign.csv"))
         training_copy = h2o.deep_copy(training_data, new_name)
-        assert training_data.nacnt()==training_copy.nacnt(), "h2o.deep_copy() command not working"
+        assert training_data.nacnt()==training_copy.nacnt(), "h2o.deep_copy() command is not working."
         training_copy.insert_missing_values(fraction=0.9)   # randomly added missing values with high probability
-        assert not(training_data.nacnt()==training_copy.nacnt()), "h2o.deep_copy() command not working"
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.deep_copy() command not working"
+        assert not(training_data.nacnt()==training_copy.nacnt()), "h2o.deep_copy() command is not working."
+    except Exception as e:
+        assert False, "h2o.deep_copy() command is not working."
 
 
 if __name__ == "__main__":

@@ -40,15 +40,16 @@ def h2oimport_file():
         training_data = h2o.import_file(pyunit_utils.locate("smalldata/prostate/prostate_cat.csv"),
                                         destination_frame=hex_key, header=1, sep = ',',
                                         col_names=col_headers, col_types=col_types, na_strings=["NA"])
-        assert training_data.frame_id == hex_key, "frame_id was not assigned correctly.  h2o.import_file() not working."
+        assert training_data.frame_id == hex_key, "frame_id was not assigned correctly.  h2o.import_file() is not" \
+                                                  " working."
         assert cmp(training_data.col_names, col_headers)==0, "column names are incorrect.  " \
                                                              "h2o.upload_file() not working."
-        assert training_data.nrow==380, "number of rows is incorrect.  h2o.import_file() not working."
-        assert training_data.ncol==8, "number of columns is incorrect.  h2o.import_file() not working."
-        assert sum(training_data.nacnt())==3, "NA count is incorrect.  h2o.import_file() not working."
+        assert training_data.nrow==380, "number of rows is incorrect.  h2o.import_file() is not working."
+        assert training_data.ncol==8, "number of columns is incorrect.  h2o.import_file() is not working."
+        assert sum(training_data.nacnt())==3, "NA count is incorrect.  h2o.import_file() is not working."
 
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.import_file() command not working."
+    except Exception as e:
+        assert False, "h2o.import_file() command is not working."
 
 
 if __name__ == "__main__":

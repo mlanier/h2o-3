@@ -47,9 +47,9 @@ def h2oapi():
         # test h2o.api() getting model information
         model_coefficients = \
             h2o.api("GET /3/GetGLMRegPath", data={"model": model._model_json["model_id"]["name"]})["coefficients"][0]
-        assert len(model_coefficients)==11, "Number of coefficients is wrong.  h2o.api() command not working"
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.api() command not working."
+        assert len(model_coefficients)==11, "Number of coefficients is wrong.  h2o.api() command is not working."
+    except Exception as e:
+        assert False, "h2o.api() command not is working."
 
 if __name__ == "__main__":
     pyunit_utils.standalone_test(h2oapi)

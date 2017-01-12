@@ -8,6 +8,20 @@ import h2o
 import urllib.parse
 from h2o.estimators.glm import H2OGeneralizedLinearEstimator
 
+# DISCLAMINER
+#
+# The main function of API tests is to make sure that changes to the API are captured
+# before the customers do.  This is to prevent breaking the customer code.  If the
+# changes are necessary, we will have the chance to warn them about the changes.
+#
+# All API tests should be short and fast to run.  The main purposes of API tests are to
+# make sure that the command in its most popular forms run correctly when user types in
+# correct input arguments.  Light weight checking will be provided on the command output
+# to make sure that we are getting the correct responses.
+#
+# For exhaustive tests using all possible combination of input arguments, making sure all
+# responses of the API commands are correct, or if in error, the correct error messages
+# are sent should be done elsewhere.
 
 def h2oremove_all():
     """
@@ -25,14 +39,13 @@ def h2oremove_all():
 
         model = H2OGeneralizedLinearEstimator(family="binomial", alpha=0, Lambda=1e-5)
         model.train(x=X, y=Y, training_frame=training_data)
-        hf_col_summary = h2o.api("GET /3/Frames/%s/summary" % urllib.parse.quote(training_data.frame_id))["frames"][0]
-        assert hf_col_summary["row_count"]==100, "row count is incorrect.  Fix h2o.api()."
-        assert hf_col_summary["column_count"]==14, "column count is incorrect.  Fix h2o.api()."
-        model_coefficients = \
-            h2o.api("GET /3/GetGLMRegPath", data={"model": model._model_json["model_id"]["name"]})["coefficients"][0]
-        assert len(model_coefficients)==11, "Number of coefficients is wrong.  h2o.api() command not working"
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.api() command not working"
+        lsObject = h2o.ls()
+        assert len(lsObject.values) == 3, "h2o.ls() command is not working."
+        h2o.remove_all()
+        lsObject2 = h2o.ls()
+        assert len(lsObject2.values) == 0, "h2o.remove_all() command is not working."
+    except Exception as e:
+        assert False, "h2o.remove_all() command is not working."
 
 
 if __name__ == "__main__":

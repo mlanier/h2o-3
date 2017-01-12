@@ -48,14 +48,14 @@ def h2oimport_sql_select():
             username = password = "postgres"
 
         citi_sql = h2o.import_sql_table(conn_url, table, username, password, ["starttime", "bikeid"])
-        assert citi_sql.nrow == 2e4, "h2o.import_sql_select() command not working."
-        assert citi_sql.ncol == 2, "h2o.import_sql_select() command not working."
+        assert citi_sql.nrow == 2e4, "h2o.import_sql_select() command is not working."
+        assert citi_sql.ncol == 2, "h2o.import_sql_select() command is not working."
 
         sql_select = h2o.import_sql_select(conn_url, "SELECT starttime FROM citibike20k", username, password)
-        assert sql_select.nrow == 2e4, "h2o.import_sql_select() command not working."
-        assert sql_select.ncol == 1, "h2o.import_sql_select() command not working."
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.import_sql_select() command not working."
+        assert sql_select.nrow == 2e4, "h2o.import_sql_select() command is not working."
+        assert sql_select.ncol == 1, "h2o.import_sql_select() command is not working."
+    except Exception as e:
+        assert False, "h2o.import_sql_select() command is not working."
 
 if __name__ == "__main__":
     pyunit_utils.standalone_test(h2oimport_sql_select)

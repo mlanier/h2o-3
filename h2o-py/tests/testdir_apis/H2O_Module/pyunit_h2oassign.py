@@ -35,12 +35,11 @@ def h2oassign():
         old_name = "benign.csv"
         new_name = "newBenign.csv"
         training_data = h2o.import_file(pyunit_utils.locate("smalldata/logreg/benign.csv"), destination_frame=old_name)
-        assert training_data.frame_id==old_name, "h2o.import_file() not working.  Wrong frame_id is assigned."
+        assert training_data.frame_id==old_name, "h2o.import_file() is not working.  Wrong frame_id is assigned."
         h2o.assign(training_data, new_name)
-        assert training_data.frame_id==new_name, "h2o.assign() not working.  New frame_id is not assigned."
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.assign() command not working"
-
+        assert training_data.frame_id==new_name, "h2o.assign() is not working.  New frame_id is not assigned."
+    except Exception as e:
+        assert False, "h2o.assign() command is not working."
 
 if __name__ == "__main__":
     pyunit_utils.standalone_test(h2oassign)

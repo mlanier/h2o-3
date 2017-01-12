@@ -55,9 +55,10 @@ def h2oget_grid():
         fetched_grid = h2o.get_grid(str(air_grid.grid_id))
 
         assert(len(air_grid.get_grid())==5)
-        print(air_grid.get_grid("logloss"))
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.get_grid() command not working"
+        assert (len(air_grid.get_grid())==len(fetched_grid.get_grid())), "h2o.get_grid() is command not working."
+
+    except Exception as e:
+        assert False, "h2o.get_grid() command is not working."
 
 
 if __name__ == "__main__":

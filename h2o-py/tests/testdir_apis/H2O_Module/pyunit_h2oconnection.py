@@ -32,9 +32,9 @@ def h2oconnection():
     # call with no arguments
     try:
         temp = h2o.connection()
-        assert temp.requests_count==7, "h2o.connection() command not working."
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.connection() command not working."
+        assert temp.requests_count==7, "h2o.connection() command is not working."
+    except Exception as e:
+        assert False, "h2o.connection() command is not working."
 
 if __name__ == "__main__":
     pyunit_utils.standalone_test(h2oconnection)

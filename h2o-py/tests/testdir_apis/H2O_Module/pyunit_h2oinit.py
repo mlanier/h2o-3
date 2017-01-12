@@ -37,13 +37,12 @@ def h2oinit():
         h2o.init()
         print("h2o.init() command works!")
     except Exception as e:  # some errors are okay like version mismatch
-        assert "Version mismatch." in e.args[0], "Wrong exception messages found.  h2o.init() command not working"
+        assert "Version mismatch." in e.args[0], "Wrong exception messages found.  h2o.init() command is not working"
 
     try:
         h2o.init(strict_version_check=False)
-        print("h2o.init(strict_version_check) command works!")
-    except Exception as e:  # some errors are okay like version mismatch
-        print("h2o.init(strict_version_check) command not working.")
+    except Exception as e:
+        assert False, "h2o.init(strict_version_check) command is not working."
 
     # try to join a cluster and test out various command arguments
     ipS = "127.0.0.1"
@@ -59,10 +58,10 @@ def h2oinit():
                  start_h2o=start_h2o, strict_version_check=strict_version_check)
         print("Command h2o.init(ip=ipS, port=portS, nthreads=nthread, max_mem_size=max_mem_size, "
               "min_mem_size=min_mem_size,start_h2o=start_h2o, strict_version_check=strict_version_check) works!")
-    except Exception as e:  # some errors are okay like version mismatch
+    except Exception as e:  # make sure correct error message is received
         assert "H2OConnectionError: Unexpected HTTP error:" in e.args[0], \
             "h2o.init(ip=ipS, port=portS, nthreads=nthread, max_mem_size=max_mem_size, min_mem_size=min_mem_size," \
-            "start_h2o=start_h2o, strict_version_check=strict_version_check) command not working"
+            "start_h2o=start_h2o, strict_version_check=strict_version_check) command is not working"
 
 if __name__ == "__main__":
     pyunit_utils.standalone_test(h2oinit)

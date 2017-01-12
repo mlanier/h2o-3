@@ -43,9 +43,9 @@ def h2oapi():
         assert hf_col_summary["column_count"]==14, "column count is incorrect.  Fix h2o.api()."
         model_coefficients = \
             h2o.api("GET /3/GetGLMRegPath", data={"model": model._model_json["model_id"]["name"]})["coefficients"][0]
-        assert len(model_coefficients)==11, "Number of coefficients is wrong.  h2o.api() command not working"
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.api() command not working"
+        assert len(model_coefficients)==11, "Number of coefficients is wrong.  h2o.api() is command not working."
+    except Exception as e:
+        assert False, "h2o.api() command is not working"
 
 
 if __name__ == "__main__":

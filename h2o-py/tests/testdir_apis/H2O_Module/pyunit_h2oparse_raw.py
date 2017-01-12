@@ -38,9 +38,9 @@ def h2oparse_raw():
 
         fhex = h2o.parse_raw(h2o.parse_setup(fraw), id='hexdev_29.hex', first_line_is_header=0)
         fhex.summary()
-        assert fhex.__class__.__name__ == "H2OFrame", "h2o.parse_raw() command not working"
-    except Exception as e:  # some errors are okay like version mismatch
-        assert False, "h2o.parse_raw() command not working"
+        assert fhex.__class__.__name__ == "H2OFrame", "h2o.parse_raw() is command not working."
+    except Exception as e:
+        assert False, "h2o.parse_raw() command is not working."
 
 
 if __name__ == "__main__":
